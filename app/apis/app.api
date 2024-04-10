@@ -1,0 +1,27 @@
+syntax = "v1"
+
+import "category.api"
+
+info (
+	title:   "app"
+	desc:    "单体入口"
+	author:  "changhao"
+	email:   "1933310737@qq.com"
+	version: "1.0.0"
+)
+
+type request {}
+
+type response {
+	version string
+}
+
+@server (
+	prefix: api/app
+)
+service app {
+	@handler getVersion
+	get /version (request) returns (response)
+}
+
+// goctl api go -api app/apis/app.api -dir app/                                                                                                                      ─╯
