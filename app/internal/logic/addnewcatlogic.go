@@ -2,7 +2,7 @@ package logic
 
 import (
 	"context"
-	"fmt"
+	"go-zero-single/app/models/dal"
 
 	"go-zero-single/app/internal/svc"
 	"go-zero-single/app/internal/types"
@@ -25,8 +25,6 @@ func NewAddNewCatLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddNewC
 }
 
 func (l *AddNewCatLogic) AddNewCat(req *types.AddCatRequest) (resp *types.AddCatResponse, err error) {
-	// todo: add your logic here and delete this line
-	fmt.Print(req.Cat_name)
-	fmt.Print(req.Cat_desc)
-	return &types.AddCatResponse{Id: "111"}, nil
+	find, _ := dal.Q.Recipe.First()
+	return &types.AddCatResponse{Id: find.RecipeName}, nil
 }
