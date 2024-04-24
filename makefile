@@ -7,5 +7,6 @@ gen-api:
 	goctl api go -api app/apis/app.api -dir app/
 
 
-
+app:
+	go run app/app.go -f app/etc/app.yaml
 
