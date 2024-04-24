@@ -2,10 +2,10 @@ package logic
 
 import (
 	"context"
-	"go-zero-single/app/models/dal"
 
 	"go-zero-single/app/internal/svc"
 	"go-zero-single/app/internal/types"
+	"go-zero-single/app/models/dal"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -25,6 +25,6 @@ func NewAddNewCatLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddNewC
 }
 
 func (l *AddNewCatLogic) AddNewCat(req *types.AddCatRequest) (resp *types.AddCatResponse, err error) {
-	find, _ := dal.Q.Recipe.First()
-	return &types.AddCatResponse{Id: find.RecipeName}, nil
+	f, _ := dal.Q.LdNote.First()
+	return &types.AddCatResponse{Id: f.Title}, nil
 }

@@ -16,54 +16,34 @@ import (
 )
 
 var (
-	Q              = new(Query)
-	Config         *config
-	Recipe         *recipe
-	RecipeCategory *recipeCategory
-	RecipesComment *recipesComment
-	WechatUser     *wechatUser
+	Q      = new(Query)
+	LdNote *ldNote
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
-	Config = &Q.Config
-	Recipe = &Q.Recipe
-	RecipeCategory = &Q.RecipeCategory
-	RecipesComment = &Q.RecipesComment
-	WechatUser = &Q.WechatUser
+	LdNote = &Q.LdNote
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:             db,
-		Config:         newConfig(db, opts...),
-		Recipe:         newRecipe(db, opts...),
-		RecipeCategory: newRecipeCategory(db, opts...),
-		RecipesComment: newRecipesComment(db, opts...),
-		WechatUser:     newWechatUser(db, opts...),
+		db:     db,
+		LdNote: newLdNote(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	Config         config
-	Recipe         recipe
-	RecipeCategory recipeCategory
-	RecipesComment recipesComment
-	WechatUser     wechatUser
+	LdNote ldNote
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:             db,
-		Config:         q.Config.clone(db),
-		Recipe:         q.Recipe.clone(db),
-		RecipeCategory: q.RecipeCategory.clone(db),
-		RecipesComment: q.RecipesComment.clone(db),
-		WechatUser:     q.WechatUser.clone(db),
+		db:     db,
+		LdNote: q.LdNote.clone(db),
 	}
 }
 
@@ -77,30 +57,18 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:             db,
-		Config:         q.Config.replaceDB(db),
-		Recipe:         q.Recipe.replaceDB(db),
-		RecipeCategory: q.RecipeCategory.replaceDB(db),
-		RecipesComment: q.RecipesComment.replaceDB(db),
-		WechatUser:     q.WechatUser.replaceDB(db),
+		db:     db,
+		LdNote: q.LdNote.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	Config         *configDo
-	Recipe         *recipeDo
-	RecipeCategory *recipeCategoryDo
-	RecipesComment *recipesCommentDo
-	WechatUser     *wechatUserDo
+	LdNote *ldNoteDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		Config:         q.Config.WithContext(ctx),
-		Recipe:         q.Recipe.WithContext(ctx),
-		RecipeCategory: q.RecipeCategory.WithContext(ctx),
-		RecipesComment: q.RecipesComment.WithContext(ctx),
-		WechatUser:     q.WechatUser.WithContext(ctx),
+		LdNote: q.LdNote.WithContext(ctx),
 	}
 }
 

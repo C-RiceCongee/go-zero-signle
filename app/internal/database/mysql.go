@@ -1,7 +1,6 @@
 package database
 
 import (
-	"gorm.io/gen"
 	"log"
 	"os"
 	"time"
@@ -23,17 +22,6 @@ var newLogger = logger.New(
 	},
 )
 
-func genModel(db *gorm.DB) {
-	g := gen.NewGenerator(gen.Config{
-		OutPath:      "app/models/dal",
-		ModelPkgPath: "app/models/models",
-		OutFile:      "",
-		Mode:         gen.WithoutContext | gen.WithDefaultQuery,
-	})
-	g.UseDB(db)
-	g.ApplyBasic(g.GenerateAllTable()...)
-	g.Execute()
-}
 func InitSqlxDB(dataSource string) (*gorm.DB, error) {
 	db, err := gorm.Open(mysql.Open(dataSource), &gorm.Config{
 		Logger: newLogger,
@@ -41,7 +29,6 @@ func InitSqlxDB(dataSource string) (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	genModel(db)
 	//dal.SetDefault(db)
 	return db, nil
 }
