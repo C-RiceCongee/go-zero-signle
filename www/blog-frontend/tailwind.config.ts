@@ -12,6 +12,10 @@ const config: Config = {
         skin: {
           bg: 'rgb(var(--color-bg))',
           content: 'rgb(var(--color-content))',
+
+          // 菜单背景色
+          'menu-bg': 'rgb(var(--color-menu-bg))',
+          'menu-content': 'rgb(var(--color-menu-content))',
         }
       },
     }
