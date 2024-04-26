@@ -68,17 +68,32 @@ const LdMenu = () => {
             clearTimeout(timer)
         }
     }, [])
+    const themes = ['skin-dark', 'skin-red']
+    const changeTheme = () => {
+        const random = Math.random() > 0.5 ? 1 : 0
+        const body = document.body;
+        themes.forEach(e => {
+            body.classList.remove(e)
+        })
+        body.classList.add(themes[random])
+    }
     return <div className="LdMenu">
-        <div className="pc-menu hidden sm:flex">
-            {
-                menuList.map(v => {
-                    return <div className="menuItem" key={v.id}>
-                        {v.menu_name}
-                    </div>
-                })
-            }
-        </div>
-        <div className="mobile-menu sm:hidden">Mobile</div>
+        <header className="pc-menu transition-all duration-1000 hidden md:flex justify-between bg-skin-bg text-skin-content">
+            <div className="logo font-bold">LD-村望老弟</div>
+            <div className="menuContainer flex">
+                {
+                    menuList.map(v => {
+                        return <div className="menuItem flex-nowrap ml-5" key={v.id}>
+                            {v.menu_name}
+                        </div>
+                    })
+                }
+            </div>
+            <div className="action" onClick={changeTheme}>
+                About
+            </div>
+        </header>
+        <header className="mobile-menu md:hidden">Mobile</header>
     </div >
 }
 export default LdMenu;
