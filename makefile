@@ -11,3 +11,5 @@ gen-api:
 app:
 	go run app/app.go -f app/etc/app.yaml
 
+web:
+	cd www/blog-frontend && npm run dev
