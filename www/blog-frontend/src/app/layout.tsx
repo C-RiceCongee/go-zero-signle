@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import LdMenu from "./components/LdMenu";
+import LdMenu from "../components/LdMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-      <LdMenu></LdMenu>
-        {children}
+      <body className={`${inter.className} bg-skin-bg text-skin-content overflow-scroll lg:w-3/5 m-auto`}>
+        <div className="menu sticky top-0">
+          <LdMenu></LdMenu>
+        </div>
+        <div className="p-5">
+          {children}
+        </div>
       </body>
     </html>
   );

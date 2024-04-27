@@ -5,16 +5,15 @@
 @layer base {
   :root {
     --color-bg: 255, 255, 255;
-    --color-menu-bg: 255, 255, 255;
     --color-content: 0, 0, 0;
+    --color-menu-bg: 255, 255, 255, .8;
     --color-menu-content: 0, 0, 0;
-
   }
 
   .skin-dark {
     --color-bg: 0, 0, 0;
-    --color-menu-bg: 0, 0, 0;
     --color-content: 255, 255, 255;
+    --color-menu-bg: 0, 0, 0, .8;
     --color-menu-content: 255, 255, 255;
 
   }
@@ -22,15 +21,20 @@
 
   .skin-red {
     --color-bg: 223, 222, 218;
-    --color-menu-bg: 223, 222, 218;
     --color-content: 145, 21, 70;
+    --color-menu-bg: 223, 222, 218, .8;
     --color-menu-content: 145, 21, 70;
   }
 
   .skin-idea {
-    --color-bg: 239, 238, 232;
-    --color-content: 145, 21, 70;
-    --color-menu-bg: 57, 79, 148;
+    --color-bg: 55, 83, 145;
+    --color-content: 255, 255, 255;
+    --color-menu-bg: 57, 79, 148, .8;
     --color-menu-content: 243, 249, 255;
   }
+}
+
+html,
+body {
+  height: 100vh;
 }

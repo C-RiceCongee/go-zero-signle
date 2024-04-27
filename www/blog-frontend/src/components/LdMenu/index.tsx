@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { LdMenuItem } from "./types";
 import CollapseMenu from "./components/CollapseMenu"
+import Link from "next/link";
 const LdMenu = () => {
     const [menuList, setMenuList] = useState<Array<LdMenuItem>>([])
     useEffect(() => {
@@ -14,7 +15,7 @@ const LdMenu = () => {
                     "menu_icon": "fas fa-home",
                     "menu_name": "村头",
                     "menu_sort": 1,
-                    "menu_target": "_self",
+                    "menu_target": "_blank",
                     "menu_url": "/"
                 },
                 {
@@ -23,7 +24,7 @@ const LdMenu = () => {
                     "menu_icon": "fas fa-newspaper",
                     "menu_name": "文章",
                     "menu_sort": 2,
-                    "menu_target": "_blank",
+                    "menu_target": "_self",
                     "menu_url": "/articles"
                 },
                 {
@@ -32,7 +33,7 @@ const LdMenu = () => {
                     "menu_icon": "fas fa-file-alt",
                     "menu_name": "相册",
                     "menu_sort": 1,
-                    "menu_target": "_self",
+                    "menu_target": "_blank",
                     "menu_url": "/articles/new"
                 },
                 {
@@ -41,7 +42,7 @@ const LdMenu = () => {
                     "menu_icon": "fas fa-users",
                     "menu_name": "影音集",
                     "menu_sort": 3,
-                    "menu_target": "_self",
+                    "menu_target": "_blank",
                     "menu_url": "/community"
                 },
                 {
@@ -50,11 +51,20 @@ const LdMenu = () => {
                     "menu_icon": "fas fa-comments",
                     "menu_name": "留言区",
                     "menu_sort": 1,
-                    "menu_target": "_self",
+                    "menu_target": "_blank",
+                    "menu_url": "/community/discussions"
+                },
+                {
+                    "id": 5,
+                    "parent_menu_id": 4,
+                    "menu_icon": "fas fa-comments",
+                    "menu_name": "摄影",
+                    "menu_sort": 1,
+                    "menu_target": "_blank",
                     "menu_url": "/community/discussions"
                 },
             ])
-        }, 1000)
+        }, 300)
         return () => {
             clearTimeout(timer)
         }
@@ -74,14 +84,14 @@ const LdMenu = () => {
         body.classList.add(themes[currentTheme])
     }
     return <div className="LdMenu">
-        <header className="pc-menu rounded-b-lg pt-5 pb-5 pl-5 pr-5 transition-all duration-10 hidden md:flex justify-between bg-skin-menu-bg text-skin-menu-content">
+        <header className="pc-menu backdrop-blur-xl bg-skin-menu-bg pt-5 pb-5 pl-5 pr-5  hidden md:flex justify-between">
             <div className="logo font-bold">LD-村望老弟</div>
             <div className="menuContainer flex">
                 {
                     menuList.map(v => {
-                        return <div className="menuItem flex-nowrap ml-5" key={v.id}>
+                        return <Link target={v.menu_target} href={v.menu_url} className="menuItem flex-nowrap ml-5" key={v.id}>
                             {v.menu_name}
-                        </div>
+                        </Link>
                     })
                 }
             </div>
@@ -89,7 +99,7 @@ const LdMenu = () => {
                 Theme
             </div>
         </header>
-        <header className="mobile-menu rounded-b-lg md:hidden flex justify-between pt-5 pb-5 pl-5 pr-5 transition-all duration-10  bg-skin-menu-bg text-skin-menu-content">
+        <header className="mobile-menu bg-skin-menu-bg backdrop-blur md:hidden flex justify-between pt-5 pb-5 pl-5 pr-5">
             <div className="logo">LD-村望老弟</div>
             <CollapseMenu list={menuList} changeTheme={changeTheme}></CollapseMenu>
         </header>
