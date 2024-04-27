@@ -32,7 +32,6 @@ CREATE TABLE `ld_notes` (
   `top` tinyint(1) DEFAULT '0' COMMENT '是否置顶',
   `type_id` bigint DEFAULT NULL COMMENT '类型',
   `tag_ids` bigint DEFAULT NULL COMMENT '标签',
-  `reference_by` varchar(300) default NULL COMMENT '被其他文章引用的id+目录章节',
   `notes_status` tinyint(1) DEFAULT NULL COMMENT '状态',
   `is_recommended` tinyint(1) DEFAULT '1' COMMENT '是否推荐',
   `is_original` tinyint(1) DEFAULT '1' COMMENT '是否原创',
