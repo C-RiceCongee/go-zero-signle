@@ -1,3 +1,4 @@
+import LdMdEditor from '@/components/LdMdEditor';
 import React from 'react';
 
 const Publish: React.FC = () => {
@@ -7,7 +8,7 @@ const Publish: React.FC = () => {
 
     return (
         <div>
-            新的文章
+            <LdMdEditor></LdMdEditor>
         </div>
     );
 };
