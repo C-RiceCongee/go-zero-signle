@@ -18,7 +18,7 @@ type LdNote struct {
 	ContentMd     string    `gorm:"column:content_md;comment:markdown版的文章内容" json:"content_md"`                   // markdown版的文章内容
 	Top           bool      `gorm:"column:top;comment:是否置顶" json:"top"`                                           // 是否置顶
 	TypeID        int64     `gorm:"column:type_id;comment:类型" json:"type_id"`                                     // 类型
-	TagIds        int64     `gorm:"column:tag_ids;comment:标签" json:"tag_ids"`                                     // 标签
+	TagIds        string    `gorm:"column:tag_ids;comment:标签" json:"tag_ids"`                                     // 标签
 	NotesStatus   bool      `gorm:"column:notes_status;comment:状态" json:"notes_status"`                           // 状态
 	IsRecommended bool      `gorm:"column:is_recommended;default:1;comment:是否推荐" json:"is_recommended"`           // 是否推荐
 	IsOriginal    bool      `gorm:"column:is_original;default:1;comment:是否原创" json:"is_original"`                 // 是否原创

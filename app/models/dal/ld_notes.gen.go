@@ -33,7 +33,7 @@ func newLdNote(db *gorm.DB, opts ...gen.DOOption) ldNote {
 	_ldNote.ContentMd = field.NewString(tableName, "content_md")
 	_ldNote.Top = field.NewBool(tableName, "top")
 	_ldNote.TypeID = field.NewInt64(tableName, "type_id")
-	_ldNote.TagIds = field.NewInt64(tableName, "tag_ids")
+	_ldNote.TagIds = field.NewString(tableName, "tag_ids")
 	_ldNote.NotesStatus = field.NewBool(tableName, "notes_status")
 	_ldNote.IsRecommended = field.NewBool(tableName, "is_recommended")
 	_ldNote.IsOriginal = field.NewBool(tableName, "is_original")
@@ -57,7 +57,7 @@ type ldNote struct {
 	ContentMd     field.String // markdown版的文章内容
 	Top           field.Bool   // 是否置顶
 	TypeID        field.Int64  // 类型
-	TagIds        field.Int64  // 标签
+	TagIds        field.String // 标签
 	NotesStatus   field.Bool   // 状态
 	IsRecommended field.Bool   // 是否推荐
 	IsOriginal    field.Bool   // 是否原创
@@ -86,7 +86,7 @@ func (l *ldNote) updateTableName(table string) *ldNote {
 	l.ContentMd = field.NewString(table, "content_md")
 	l.Top = field.NewBool(table, "top")
 	l.TypeID = field.NewInt64(table, "type_id")
-	l.TagIds = field.NewInt64(table, "tag_ids")
+	l.TagIds = field.NewString(table, "tag_ids")
 	l.NotesStatus = field.NewBool(table, "notes_status")
 	l.IsRecommended = field.NewBool(table, "is_recommended")
 	l.IsOriginal = field.NewBool(table, "is_original")

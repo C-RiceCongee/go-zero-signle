@@ -31,4 +31,20 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithPrefix("/api/category"),
 	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: AddNewNoteHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/get/:id",
+				Handler: GetNoteDetailsByIdHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/notes"),
+	)
 }

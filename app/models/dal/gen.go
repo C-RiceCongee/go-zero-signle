@@ -16,34 +16,44 @@ import (
 )
 
 var (
-	Q      = new(Query)
-	LdNote *ldNote
+	Q          = new(Query)
+	LdCategory *ldCategory
+	LdMenu     *ldMenu
+	LdNote     *ldNote
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	LdCategory = &Q.LdCategory
+	LdMenu = &Q.LdMenu
 	LdNote = &Q.LdNote
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:     db,
-		LdNote: newLdNote(db, opts...),
+		db:         db,
+		LdCategory: newLdCategory(db, opts...),
+		LdMenu:     newLdMenu(db, opts...),
+		LdNote:     newLdNote(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	LdNote ldNote
+	LdCategory ldCategory
+	LdMenu     ldMenu
+	LdNote     ldNote
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:     db,
-		LdNote: q.LdNote.clone(db),
+		db:         db,
+		LdCategory: q.LdCategory.clone(db),
+		LdMenu:     q.LdMenu.clone(db),
+		LdNote:     q.LdNote.clone(db),
 	}
 }
 
@@ -57,18 +67,24 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:     db,
-		LdNote: q.LdNote.replaceDB(db),
+		db:         db,
+		LdCategory: q.LdCategory.replaceDB(db),
+		LdMenu:     q.LdMenu.replaceDB(db),
+		LdNote:     q.LdNote.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	LdNote *ldNoteDo
+	LdCategory *ldCategoryDo
+	LdMenu     *ldMenuDo
+	LdNote     *ldNoteDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		LdNote: q.LdNote.WithContext(ctx),
+		LdCategory: q.LdCategory.WithContext(ctx),
+		LdMenu:     q.LdMenu.WithContext(ctx),
+		LdNote:     q.LdNote.WithContext(ctx),
 	}
 }
 

@@ -1,6 +1,7 @@
 syntax = "v1"
 
 import "category.api"
+import "note.api"
 
 info (
 	title:   "app"

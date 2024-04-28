@@ -1,6 +1,7 @@
 package database
 
 import (
+	"go-zero-single/app/models/dal"
 	"log"
 	"os"
 	"time"
@@ -29,6 +30,6 @@ func InitSqlxDB(dataSource string) (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	//dal.SetDefault(db)
+	dal.SetDefault(db)
 	return db, nil
 }
