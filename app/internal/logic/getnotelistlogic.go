@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 
 	"go-zero-single/app/internal/svc"
 	"go-zero-single/app/internal/types"
@@ -26,15 +27,15 @@ func NewGetNoteListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetNo
 
 func (l *GetNoteListLogic) GetNoteList(req *types.GetNoteListRequest) (resp *types.GetNoteListResponse, err error) {
 	dalNote := dal.LdNote
-	qList := dalNote.Offset(req.PageSize * (req.PageNo - 1)).Limit(req.PageSize)
+	baseQuery := dal.LdNote.Where()
 	if len(req.Title) > 0 {
-		qList = qList.Where(dalNote.Title.Like(req.Title))
+		baseQuery = baseQuery.Where(dalNote.Title.Like(fmt.Sprintf("%%%s%%", req.Title)))
 	}
-	r, err := qList.Debug().Find()
+	r, err := baseQuery.Offset(req.PageSize * (req.PageNo - 1)).Limit(req.PageSize).Debug().Find()
 	if err != nil {
 		return nil, err
 	}
-	c, err := qList.Count()
+	c, err := baseQuery.Count()
 	if err != nil {
 		return nil, err
 	}
