@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS `ld_category`;
 
 CREATE TABLE `ld_category` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-    `category_id` int(11) NULL COMMENT '',
     `category_name` varchar(255) NULL COMMENT '分类名称',
     `category_cover` varchar(255) NULL COMMENT '分类封面',
     `category_url` varchar(255) NULL COMMENT '分类路径',

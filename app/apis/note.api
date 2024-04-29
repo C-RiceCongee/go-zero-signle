@@ -54,12 +54,16 @@ type GetNoteListResponse {
 	prefix: api/notes
 )
 service app {
+
+	// 添加新的文章
 	@handler AddNewNoteHandler
 	post /add (AddNewNoteRequest) returns (AddNewNoteResponse)
 
+	// 获取列表
 	@handler GetNoteList
 	post /list (GetNoteListRequest) returns (GetNoteListResponse)
 
+	// 获取文章详情
 	@handler GetNoteDetailsById
 	post /get/:id () returns ()
 }
