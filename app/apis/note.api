@@ -7,7 +7,7 @@ info(
 	email: "1933310737@qq.com"
 	version: "1.0.0"
 )
-
+// AddNewNoteRequest 添加新文章请求体
 type AddNewNoteRequest {
 	Title         string `json:"title"`
 	ContentMd     string `json:"content_md"`
@@ -20,7 +20,35 @@ type AddNewNoteRequest {
 	Description   string `json:"description"`
 	Keywords      string `json:"keywords"`
 }
+// AddNewNoteRequest 添加新文章响应体
 type AddNewNoteResponse {
+}
+
+// GetNoteListRequest 获取列表请求体
+type GetNoteListRequest {
+	PageNo        int    `json:"page_no"`
+	PageSize      int    `json:"page_size"`
+	Title         string `json:"title"`
+	TypeId        int64  `json:"type_id"`
+	TagIds        string `json:"tag_ids"`
+	IsOriginal    bool   `json:"is_original"`
+	IsRecommended bool   `json:"is_recommended"`
+	Keywords      string `json:"keywords"`
+}
+// GetNoteListResponse 获取列表响应体
+type GetNoteListResponseItem {
+	Title         string `json:"title"`
+	CoverImage    string `json:"cover_image"`
+	Description   string `json:"description"`
+	Top           bool   `json:"top"`
+	TypeId        int64  `json:"type_id"`
+	TagIds        string `json:"tag_ids"`
+	IsOriginal    bool   `json:"is_original"`
+	IsRecommended bool   `json:"is_recommended"`
+}
+type GetNoteListResponse {
+	List  []GetNoteListResponseItem `json:"list"`
+	Total int64                     `json:"total"`
 }
 @server(
 	prefix: api/notes
@@ -28,6 +56,9 @@ type AddNewNoteResponse {
 service app {
 	@handler AddNewNoteHandler
 	post /add (AddNewNoteRequest) returns (AddNewNoteResponse)
+
+	@handler GetNoteList
+	post /list (GetNoteListRequest) returns (GetNoteListResponse)
 
 	@handler GetNoteDetailsById
 	post /get/:id () returns ()

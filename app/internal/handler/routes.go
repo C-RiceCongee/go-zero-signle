@@ -44,6 +44,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/get/:id",
 				Handler: GetNoteDetailsByIdHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: GetNoteListHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api/notes"),
 	)

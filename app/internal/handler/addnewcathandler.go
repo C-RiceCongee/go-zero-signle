@@ -1,12 +1,13 @@
 package handler
 
 import (
-	"github.com/zeromicro/go-zero/rest/httpx"
 	"go-zero-single/app/internal/logic"
 	"go-zero-single/app/internal/svc"
 	"go-zero-single/app/internal/types"
 	"go-zero-single/common/response"
 	"net/http"
+
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 func addNewCatHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
