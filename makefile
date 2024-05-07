@@ -1,4 +1,4 @@
-# 
+# 安装依赖
 install:
 	go mod tidy && cd www/blog-frontend && npm i
 
@@ -17,3 +17,10 @@ app:
 
 web:
 	cd www/blog-frontend && npm run dev
+
+commit = "update code"
+# 提交代码
+push:
+	git add .
+	git commit -m 'feat: $(commit) 🚀🚀🚀'
+	git push origin main
