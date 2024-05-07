@@ -41,7 +41,7 @@ const LdNoteList = () => {
 		},
 	]
 	return (
-		<div className='LdNoteList'>
+		<div className='LdNoteList' style={{ fontFamily: "MyFont"}}>
 			{data.map(v => {
 				return <Notes key={v.id} data={v}></Notes>
 			})}

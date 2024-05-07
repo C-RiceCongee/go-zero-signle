@@ -69,7 +69,7 @@ const LdMenu = () => {
             clearTimeout(timer)
         }
     }, [])
-    const themes = ['skin-dark', 'skin-red', 'skin-idea']
+    const themes = ['skin-dark', 'skin-gray', 'skin-idea']
     const [currentTheme, setCurrentTheme] = useState(0)
     const changeTheme = () => {
         if (currentTheme === themes.length - 1) {

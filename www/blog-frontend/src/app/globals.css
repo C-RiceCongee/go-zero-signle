@@ -26,11 +26,11 @@
 		--color-menu-content: 255, 255, 255;
 	}
 
-	.skin-red {
+	.skin-gray {
 		--color-bg: 223, 222, 218;
 		--color-content: 145, 21, 70;
-		--color-1st-content: 203, 203, 203;
-		--color-2sec-content: 152, 152, 152;
+		--color-1st-content: 134,20,61;
+		--color-2sec-content: 134,20,61;
 		--color-menu-bg: 223, 222, 218, 0.3;
 		--color-menu-content: 145, 21, 70;
 	}
@@ -45,9 +45,20 @@
 	}
 }
 
+@font-face {
+	font-family: "MyFont";
+	font-weight: bold;
+	src:
+		url("/Haiyanzhishidongdong-Regular-2.ttf") format("woff2");
+}
+
 html,
 body {
 	height: 100vh;
 	padding: 0;
 	margin: 0;
+}
+
+* {
+	font-family: "MyFont";
 }
