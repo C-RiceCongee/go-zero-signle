@@ -1,3 +1,7 @@
+# 
+install:
+	go mod tidy && cd www/blog-frontend && npm i
+
 ## 命令
 gen:
 	go run cmd/gen/gen.go

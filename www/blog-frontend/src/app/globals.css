@@ -3,38 +3,51 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-bg: 255, 255, 255;
-    --color-content: 0, 0, 0;
-    --color-menu-bg: 255, 255, 255, .8;
-    --color-menu-content: 0, 0, 0;
-  }
+	:root {
+		--color-bg: 0, 0, 0;
+		--color-content: 255, 255, 255;
+		--color-menu-bg: 0, 0, 0, 0.6;
+		--color-menu-content: 255, 255, 255;
+		--color-1st-content: 203, 203, 203;
+		--color-2sec-content: 152, 152, 152;
+		--content-area-width: 80%;
+		/* --color-bg: 255, 255, 255; */
+		/* --color-content: 0, 0, 0; */
+		/* --color-menu-bg: 255, 255, 255, .3; */
+		/* --color-menu-content: 0, 0, 0; */
+	}
 
-  .skin-dark {
-    --color-bg: 0, 0, 0;
-    --color-content: 255, 255, 255;
-    --color-menu-bg: 0, 0, 0, .8;
-    --color-menu-content: 255, 255, 255;
+	.skin-dark {
+		--color-bg: 0, 0, 0;
+		--color-content: 255, 255, 255;
+		--color-1st-content: 203, 203, 203;
+		--color-2sec-content: 152, 152, 152;
+		--color-menu-bg: 0, 0, 0, 0.3;
+		--color-menu-content: 255, 255, 255;
+	}
 
-  }
+	.skin-red {
+		--color-bg: 223, 222, 218;
+		--color-content: 145, 21, 70;
+		--color-1st-content: 203, 203, 203;
+		--color-2sec-content: 152, 152, 152;
+		--color-menu-bg: 223, 222, 218, 0.3;
+		--color-menu-content: 145, 21, 70;
+	}
 
-
-  .skin-red {
-    --color-bg: 223, 222, 218;
-    --color-content: 145, 21, 70;
-    --color-menu-bg: 223, 222, 218, .8;
-    --color-menu-content: 145, 21, 70;
-  }
-
-  .skin-idea {
-    --color-bg: 55, 83, 145;
-    --color-content: 255, 255, 255;
-    --color-menu-bg: 57, 79, 148, .8;
-    --color-menu-content: 243, 249, 255;
-  }
+	.skin-idea {
+		--color-bg: 55, 83, 145;
+		--color-content: 255, 255, 255;
+		--color-1st-content: 203, 203, 203;
+		--color-2sec-content: 152, 152, 152;
+		--color-menu-bg: 57, 79, 148, 0.3;
+		--color-menu-content: 243, 249, 255;
+	}
 }
 
 html,
 body {
-  height: 100vh;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
 }

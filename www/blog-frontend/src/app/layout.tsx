@@ -17,11 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-skin-bg text-skin-content overflow-scroll lg:w-3/5 m-auto`}>
+      <body className={`${inter.className} bg-skin-bg text-skin-content  h-1vh scroll-m-0 lg:w-full m-auto`}>
         <div className="menu sticky top-0">
           <LdMenu></LdMenu>
         </div>
-        <div className="p-5">
+        <div className="p-0">
           {children}
         </div>
       </body>
