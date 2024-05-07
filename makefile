@@ -18,8 +18,8 @@ app:
 web:
 	cd www/blog-frontend && npm run dev
 
-commit = "update code"
 # 提交代码
+commit = "update code"
 push:
 	git add .
 	git commit -m 'feat: $(commit) 🚀🚀🚀'
