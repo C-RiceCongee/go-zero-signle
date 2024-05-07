@@ -56,7 +56,7 @@ CREATE TABLE `ld_notes` (
   `cover_image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '文章封面图片',
   `content_md` mediumtext COLLATE utf8mb4_general_ci COMMENT 'markdown版的文章内容',
   `top` tinyint(1) DEFAULT '0' COMMENT '是否置顶',
-  `note_type` tinyint(1) DEFAULT '1' COMMENT '1:笔记，2 影视，3音乐，4，书籍',
+  `note_type` tinyint(2) DEFAULT '1' COMMENT '1:笔记，2 影视，3音乐，4，书籍',
   `type_id` bigint DEFAULT NULL COMMENT '分类id',
   `tag_ids` VARCHAR(255) DEFAULT NULL COMMENT '标签',
   `notes_status` tinyint(1) DEFAULT NULL COMMENT '状态',

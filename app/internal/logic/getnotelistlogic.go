@@ -43,6 +43,7 @@ func (l *GetNoteListLogic) GetNoteList(req *types.GetNoteListRequest) (resp *typ
 	for i := range r {
 		ret[i].Title = r[i].Title
 		ret[i].CoverImage = r[i].CoverImage
+		ret[i].NoteType = r[i].NoteType
 	}
 	return &types.GetNoteListResponse{
 		List:  ret,

@@ -32,6 +32,7 @@ func newLdNote(db *gorm.DB, opts ...gen.DOOption) ldNote {
 	_ldNote.CoverImage = field.NewString(tableName, "cover_image")
 	_ldNote.ContentMd = field.NewString(tableName, "content_md")
 	_ldNote.Top = field.NewBool(tableName, "top")
+	_ldNote.NoteType = field.NewInt32(tableName, "note_type")
 	_ldNote.TypeID = field.NewInt64(tableName, "type_id")
 	_ldNote.TagIds = field.NewString(tableName, "tag_ids")
 	_ldNote.NotesStatus = field.NewBool(tableName, "notes_status")
@@ -56,7 +57,8 @@ type ldNote struct {
 	CoverImage    field.String // 文章封面图片
 	ContentMd     field.String // markdown版的文章内容
 	Top           field.Bool   // 是否置顶
-	TypeID        field.Int64  // 类型
+	NoteType      field.Int32  // 1:笔记，2 影视，3音乐，4，书籍
+	TypeID        field.Int64  // 分类id
 	TagIds        field.String // 标签
 	NotesStatus   field.Bool   // 状态
 	IsRecommended field.Bool   // 是否推荐
@@ -85,6 +87,7 @@ func (l *ldNote) updateTableName(table string) *ldNote {
 	l.CoverImage = field.NewString(table, "cover_image")
 	l.ContentMd = field.NewString(table, "content_md")
 	l.Top = field.NewBool(table, "top")
+	l.NoteType = field.NewInt32(table, "note_type")
 	l.TypeID = field.NewInt64(table, "type_id")
 	l.TagIds = field.NewString(table, "tag_ids")
 	l.NotesStatus = field.NewBool(table, "notes_status")
@@ -109,12 +112,13 @@ func (l *ldNote) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *ldNote) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 13)
+	l.fieldMap = make(map[string]field.Expr, 14)
 	l.fieldMap["id"] = l.ID
 	l.fieldMap["title"] = l.Title
 	l.fieldMap["cover_image"] = l.CoverImage
 	l.fieldMap["content_md"] = l.ContentMd
 	l.fieldMap["top"] = l.Top
+	l.fieldMap["note_type"] = l.NoteType
 	l.fieldMap["type_id"] = l.TypeID
 	l.fieldMap["tag_ids"] = l.TagIds
 	l.fieldMap["notes_status"] = l.NotesStatus

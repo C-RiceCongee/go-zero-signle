@@ -9,7 +9,6 @@ const TableNameLdCategory = "ld_category"
 // LdCategory 博客-分类表
 type LdCategory struct {
 	ID               int64  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
-	CategoryID       int32  `gorm:"column:category_id" json:"category_id"`
 	CategoryName     string `gorm:"column:category_name;comment:分类名称" json:"category_name"`                            // 分类名称
 	CategoryCover    string `gorm:"column:category_cover;comment:分类封面" json:"category_cover"`                          // 分类封面
 	CategoryURL      string `gorm:"column:category_url;comment:分类路径" json:"category_url"`                              // 分类路径

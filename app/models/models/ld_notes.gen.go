@@ -17,7 +17,8 @@ type LdNote struct {
 	CoverImage    string    `gorm:"column:cover_image;comment:文章封面图片" json:"cover_image"`                         // 文章封面图片
 	ContentMd     string    `gorm:"column:content_md;comment:markdown版的文章内容" json:"content_md"`                   // markdown版的文章内容
 	Top           bool      `gorm:"column:top;comment:是否置顶" json:"top"`                                           // 是否置顶
-	TypeID        int64     `gorm:"column:type_id;comment:类型" json:"type_id"`                                     // 类型
+	NoteType      int32     `gorm:"column:note_type;default:1;comment:1:笔记，2 影视，3音乐，4，书籍" json:"note_type"`       // 1:笔记，2 影视，3音乐，4，书籍
+	TypeID        int64     `gorm:"column:type_id;comment:分类id" json:"type_id"`                                   // 分类id
 	TagIds        string    `gorm:"column:tag_ids;comment:标签" json:"tag_ids"`                                     // 标签
 	NotesStatus   bool      `gorm:"column:notes_status;comment:状态" json:"notes_status"`                           // 状态
 	IsRecommended bool      `gorm:"column:is_recommended;default:1;comment:是否推荐" json:"is_recommended"`           // 是否推荐

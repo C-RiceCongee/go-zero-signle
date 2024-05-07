@@ -39,6 +39,7 @@ type GetNoteListResponseItem struct {
 	Description   string `json:"description"`
 	Top           bool   `json:"top"`
 	TypeId        int64  `json:"type_id"`
+	NoteType      int32  `json:"note_type`
 	TagIds        string `json:"tag_ids"`
 	IsOriginal    bool   `json:"is_original"`
 	IsRecommended bool   `json:"is_recommended"`

@@ -28,7 +28,6 @@ func newLdCategory(db *gorm.DB, opts ...gen.DOOption) ldCategory {
 	tableName := _ldCategory.ldCategoryDo.TableName()
 	_ldCategory.ALL = field.NewAsterisk(tableName)
 	_ldCategory.ID = field.NewInt64(tableName, "id")
-	_ldCategory.CategoryID = field.NewInt32(tableName, "category_id")
 	_ldCategory.CategoryName = field.NewString(tableName, "category_name")
 	_ldCategory.CategoryCover = field.NewString(tableName, "category_cover")
 	_ldCategory.CategoryURL = field.NewString(tableName, "category_url")
@@ -46,7 +45,6 @@ type ldCategory struct {
 
 	ALL              field.Asterisk
 	ID               field.Int64
-	CategoryID       field.Int32
 	CategoryName     field.String // 分类名称
 	CategoryCover    field.String // 分类封面
 	CategoryURL      field.String // 分类路径
@@ -69,7 +67,6 @@ func (l ldCategory) As(alias string) *ldCategory {
 func (l *ldCategory) updateTableName(table string) *ldCategory {
 	l.ALL = field.NewAsterisk(table)
 	l.ID = field.NewInt64(table, "id")
-	l.CategoryID = field.NewInt32(table, "category_id")
 	l.CategoryName = field.NewString(table, "category_name")
 	l.CategoryCover = field.NewString(table, "category_cover")
 	l.CategoryURL = field.NewString(table, "category_url")
@@ -91,9 +88,8 @@ func (l *ldCategory) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (l *ldCategory) fillFieldMap() {
-	l.fieldMap = make(map[string]field.Expr, 7)
+	l.fieldMap = make(map[string]field.Expr, 6)
 	l.fieldMap["id"] = l.ID
-	l.fieldMap["category_id"] = l.CategoryID
 	l.fieldMap["category_name"] = l.CategoryName
 	l.fieldMap["category_cover"] = l.CategoryCover
 	l.fieldMap["category_url"] = l.CategoryURL
