@@ -47,7 +47,9 @@ type GetNoteListResponseItem {
 	TagIds        string `json:"tag_ids"`
 	IsOriginal    bool   `json:"is_original"`
 	IsRecommended bool   `json:"is_recommended"`
-}
+} 
+
+type 
 type GetNoteListResponse {
 	List  []GetNoteListResponseItem `json:"list"`
 	Total int64                     `json:"total"`
