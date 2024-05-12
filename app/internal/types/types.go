@@ -34,6 +34,7 @@ type GetNoteListResponse struct {
 }
 
 type GetNoteListResponseItem struct {
+	Id            int64  `json:"id"`
 	Title         string `json:"title"`
 	CoverImage    string `json:"cover_image"`
 	Description   string `json:"description"`

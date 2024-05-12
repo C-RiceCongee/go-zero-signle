@@ -16,7 +16,7 @@ export default async function Home() {
 			{/* 分类图 */}
 			{/* <LdCategory></LdCategory> */}
 			{/* 文章列表 */}
-			<div className='recentNotes lg:w-1/2 md:w-full m-auto p-10'>
+			<div className='recentNotes '>
 				<LdNoteList data={data.list}></LdNoteList>
 			</div>
 			{/* .. */}

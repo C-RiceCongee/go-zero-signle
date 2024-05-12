@@ -16,6 +16,12 @@ const LazyImage: React.FC<LazyImageProps> = (props) => {
       // 2. 和适口高度做对比 (剪掉图片高度 要图片完全进入才去加载)
       const browserHeight = window.innerHeight
       if (distanceToTop + imgHeight <= browserHeight) {
+        // console.log("time to show")
+        // const img = new Image()
+        // img.src = props.src || ''
+        // img.onload = (e) => {
+        //   setIsIn(true)
+        // }
         setIsIn(true)
       }
     }, 1000)

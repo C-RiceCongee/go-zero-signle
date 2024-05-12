@@ -21,7 +21,7 @@ export default function RootLayout({
         <div className="menu sticky top-0">
           <LdMenu></LdMenu>
         </div>
-        <div className="p-0">
+        <div className="lg:w-1/2 md:w-full m-auto p-10">
           {children}
         </div>
       </body>

@@ -37,6 +37,7 @@ type GetNoteListRequest {
 }
 // GetNoteListResponse 获取列表响应体
 type GetNoteListResponseItem {
+	Id         	  int64 `json:"id"`
 	Title         string `json:"title"`
 	CoverImage    string `json:"cover_image"`
 	Description   string `json:"description"`

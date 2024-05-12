@@ -41,6 +41,7 @@ func (l *GetNoteListLogic) GetNoteList(req *types.GetNoteListRequest) (resp *typ
 	}
 	ret := make([]types.GetNoteListResponseItem, len(r))
 	for i := range r {
+		ret[i].Id = r[i].ID
 		ret[i].Title = r[i].Title
 		ret[i].CoverImage = r[i].CoverImage
 		ret[i].NoteType = r[i].NoteType
