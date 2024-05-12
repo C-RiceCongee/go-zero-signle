@@ -8,6 +8,7 @@ interface Notes {
 		keywords: string
 	}
 }
+import LazyDiv from '@/components/LazyDiv'
 import LazyImage from '@/components/LdLazyImage'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -15,7 +16,7 @@ const Notes: FC<Notes> = props => {
 	const { title, id, description, cover_image, create_time, keywords } =
 		props.data
 	return (
-		<div className='rounded-2xl ldNoteItem mb-5' key={id}>
+		<LazyDiv className='rounded-2xl ldNoteItem mb-5' key={id}>
 			<Link
 				target='__blank'
 				href={`/post/${id}`}
@@ -38,7 +39,7 @@ const Notes: FC<Notes> = props => {
 					{keywords}
 				</div>
 			</div>
-		</div>
+		</LazyDiv>
 	)
 }
 

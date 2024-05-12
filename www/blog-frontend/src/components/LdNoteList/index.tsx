@@ -1,12 +1,11 @@
 import LazyImage from '../LdLazyImage'
 import Link from 'next/link'
 import Notes from './components/Notes'
-const LdNoteList = ({data}) => {
-	
+
+const LdNoteList = ({ data }) => {
 	return (
-		<div className='LdNoteList' style={{ fontFamily: "MyFont"}}>
+		<div className='LdNoteList' style={{ fontFamily: "MyFont" }}>
 			{data.map(v => {
-				console.log(v)
 				return <Notes key={v.id} data={v}></Notes>
 			})}
 		</div>
