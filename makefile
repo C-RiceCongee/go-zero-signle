@@ -20,6 +20,9 @@ web:
 
 # 提交代码
 commit = "update code"
+
+pull:
+	git pull origin main
 push:
 	git add .
 	git commit -m 'feat: $(commit) 🚀🚀🚀'

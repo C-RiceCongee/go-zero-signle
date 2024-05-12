@@ -12,26 +12,22 @@ const CollapseMenu: React.FC<ICollapseMenuProps> = props => {
 		<div className='collapseMenu  shadow-2xl rounded-b-lg '>
 			<div className='bars' onClick={() => setOpen(!open)}>
 				<span
-					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${
-						open && 'rotate-45  -translate-x-2 translate-y-2'
-					}`}
+					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${open && 'rotate-45  -translate-x-2 translate-y-2'
+						}`}
 				></span>
 				<span
-					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${
-						open && 'opacity-0'
-					}`}
+					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${open && 'opacity-0'
+						}`}
 				></span>
 				<span
-					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${
-						open && `-rotate-45 -translate-x-2 -translate-y-2`
-					}`}
+					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${open && `-rotate-45 -translate-x-2 -translate-y-2`
+						}`}
 				></span>
 			</div>
 
 			<div
-				className={`fullScreeMenu  shadow-2xl rounded-b-lg transition-top duration-75  w-full  bg-skin-menu-bg backdrop-blur-xl left-0  absolute  ${
-					open ? `top-16` : `-top-[2000px] opacity-0`
-				}`}
+				className={`fullScreeMenu  shadow-2xl rounded-b-lg transition-top duration-75  w-full  bg-skin-menu-bg backdrop-blur-xl left-0  absolute  ${open ? `top-16` : `-top-[2000px] opacity-0`
+					}`}
 			>
 				{list.map(v => {
 					return (

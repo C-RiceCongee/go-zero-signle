@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-skin-bg text-skin-content  h-1vh scroll-m-0 lg:w-full m-auto`}>
+      <body className={`${inter.className} bg-skin-bg text-skin-content  scroll-m-0 lg:w-full m-auto`}>
         <div className="menu sticky top-0">
           <LdMenu></LdMenu>
         </div>

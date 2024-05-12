@@ -46,7 +46,7 @@ const LdMenu = () => {
                     "menu_url": "/community"
                 },
                 {
-                    "id": 5,
+                    "id": 6,
                     "parent_menu_id": 4,
                     "menu_icon": "fas fa-comments",
                     "menu_name": "留言区",
@@ -55,7 +55,7 @@ const LdMenu = () => {
                     "menu_url": "/community/discussions"
                 },
                 {
-                    "id": 5,
+                    "id": 7,
                     "parent_menu_id": 4,
                     "menu_icon": "fas fa-comments",
                     "menu_name": "摄影",
