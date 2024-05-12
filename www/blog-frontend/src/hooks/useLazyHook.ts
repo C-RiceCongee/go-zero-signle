@@ -8,8 +8,8 @@ const useLazy = (ref: RefObject<HTMLElement>) => {
     
     const onScroll = throttle(() => {
         if (ref.current) {
-            const distanceToTop = ref.current?.getBoundingClientRect().top || 99999
-            const domHeight = ref.current?.getBoundingClientRect().height || 0
+            const distanceToTop = ref.current.getBoundingClientRect().top
+            const domHeight = ref.current.getBoundingClientRect().height
             if (distanceToTop + domHeight <= window.innerHeight) {
                 setIsIn(true)
             }
