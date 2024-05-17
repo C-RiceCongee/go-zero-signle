@@ -19,53 +19,101 @@ import shell from 'highlight.js/lib/languages/shell'
 import diff from 'highlight.js/lib/languages/diff.js'
 import typescript from 'highlight.js/lib/languages/typescript'
 import '../../styles/render/render.css'
+import {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('go', go)
 hljs.registerLanguage('shell', shell)
 hljs.registerLanguage('sh', shell)
 hljs.registerLanguage('diff', diff)
 hljs.registerLanguage('typescript', typescript)
+const LdRenderToc = (html: string) => {
+	const domRef = useRef<HTMLDivElement>(null)
+	useLayoutEffect(() => {
+		domRef.current?.addEventListener('click', e => {
+			e.preventDefault()
+			if (e.target as HTMLAnchorElement) {
+				const id = e.target!.getAttribute('href').substring(1)
+				document.getElementById(id)!.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center',
+					inline: 'nearest',
+				})
+			}
+		})
+	}, [])
+	return (
+		<div className='fixed bg-skin-bg right-0 p-10 text-sm top-[68px] shadow-ld-shadow-1  backdrop-blur-xl radius-sm'>
+			<div ref={domRef} dangerouslySetInnerHTML={{ __html: html }}></div>
+		</div>
+	)
+}
 const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	const { content } = props
-	const md: MarkdownIt = markdownit({
-		html: true,
-		linkify: true,
-		typographer: true,
-		highlight: function (str, lang) {
-			if (lang && hljs.getLanguage(lang)) {
-				try {
-					return (
-						'<pre><code class="hljs">' +
-						hljs.highlight(str, { language: lang, ignoreIllegals: true })
-							.value +
-						'</code></pre>'
-					)
-				} catch (__) {}
-			}
+	const [htmlToc, setHtmlToc] = useState('')
+	const [renderContent, setRenderContent] = useState('')
 
-			return (
-				'<pre><code class="hljs">' + md.utils.escapeHtml(str) + '</code></pre>'
-			)
-		},
-	})
-		.use(markdownItDeflist)
-		.use(markdownItContainer)
-		.use(markdownItTable)
-		.use(footnot)
-		.use(emoji)
-		.use(markdownItAnchor, {
-			permalink: true,
-			permalinkBefore: true,
-			permalinkSymbol: '#',
+	const handleRender = useCallback(() => {
+		const md: MarkdownIt = markdownit({
+			html: true,
+			linkify: true,
+			typographer: true,
+			highlight: function (str, lang) {
+				if (lang && hljs.getLanguage(lang)) {
+					try {
+						return (
+							'<pre><code class="hljs">' +
+							hljs.highlight(str, { language: lang, ignoreIllegals: true })
+								.value +
+							'</code></pre>'
+						)
+					} catch (__) {}
+				}
+
+				return (
+					'<pre><code class="hljs">' +
+					md.utils.escapeHtml(str) +
+					'</code></pre>'
+				)
+			},
 		})
-		.use(markdownItTocDoneRight)
-	const result = md.render(content)
-	md.render(`![](example.png "image title")`)
+			.use(markdownItDeflist)
+			.use(markdownItContainer)
+			.use(markdownItTable)
+			.use(footnot)
+			.use(emoji)
+			.use(markdownItAnchor, {
+				permalink: true,
+				permalinkBefore: true,
+				format: (x, htmlencode) => {
+					console.log(x)
+					console.log(htmlencode)
+					return `<span>${htmlencode(x)}</span>`
+				},
+			})
+			.use(markdownItTocDoneRight, {
+				callback: html => {
+					setHtmlToc(html)
+				},
+			})
+		setRenderContent(md.render(content))
+	}, [content])
+	useEffect(() => {
+		handleRender()
+	}, [handleRender])
 	return (
-		<div
-			className='ldMdRenderer'
-			dangerouslySetInnerHTML={{ __html: result }}
-		></div>
+		<div>
+			{LdRenderToc(htmlToc)}
+			<div
+				className='ldMdRenderer scroll-smooth'
+				dangerouslySetInnerHTML={{ __html: renderContent }}
+			></div>
+		</div>
 	)
 }
 
