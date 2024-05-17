@@ -4,7 +4,7 @@ import Notes from './components/Notes'
 
 const LdNoteList = ({ data }) => {
 	return (
-		<div className='LdNoteList' style={{ fontFamily: "MyFont" }}>
+		<div className='LdNoteList'>
 			{data.map(v => {
 				return <Notes key={v.id} data={v}></Notes>
 			})}

@@ -1,20 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('../styles/highlights/shades-of-purple.min.css');
 @layer base {
 	:root {
-		--color-bg: 0, 0, 0;
-		--color-content: 255, 255, 255;
-		--color-menu-bg: 0, 0, 0, 0.6;
-		--color-menu-content: 255, 255, 255;
-		--color-1st-content: 203, 203, 203;
-		--color-2sec-content: 152, 152, 152;
-		--content-area-width: 80%;
-		/* --color-bg: 255, 255, 255; */
-		/* --color-content: 0, 0, 0; */
-		/* --color-menu-bg: 255, 255, 255, .3; */
-		/* --color-menu-content: 0, 0, 0; */
+		--color-bg: 223, 222, 218;
+		--color-content: 145, 21, 70;
+		--color-1st-content: 134, 20, 61;
+		--color-2sec-content: 134, 20, 61;
+		--color-menu-bg: 223, 222, 218, 0.3;
+		--color-menu-content: 145, 21, 70;
 	}
 
 	.skin-dark {
@@ -29,8 +24,8 @@
 	.skin-gray {
 		--color-bg: 223, 222, 218;
 		--color-content: 145, 21, 70;
-		--color-1st-content: 134,20,61;
-		--color-2sec-content: 134,20,61;
+		--color-1st-content: 134, 20, 61;
+		--color-2sec-content: 134, 20, 61;
 		--color-menu-bg: 223, 222, 218, 0.3;
 		--color-menu-content: 145, 21, 70;
 	}
@@ -46,10 +41,9 @@
 }
 
 @font-face {
-	font-family: "MyFont";
+	font-family: 'MyFont';
 	font-weight: bold;
-	src:
-		url("/Haiyanzhishidongdong-Regular-2.ttf") format("woff2");
+	src: url('/Haiyanzhishidongdong-Regular-2.ttf') format('woff2');
 }
 
 html,
@@ -59,5 +53,45 @@ body {
 }
 
 * {
-	font-family: "MyFont";
+	font-family: 'MyFont';
+}
+
+h1 {
+	font-size: 3rem;
+}
+h2 {
+	font-size: 2.5rem;
+}
+h3 {
+	font-size: 2rem;
+}
+h4 {
+	font-size: 1.8rem;
+}
+h5 {
+	font-size: 1.4rem;
+}
+h6 {
+	font-size: 1rem;
+}
+
+pre {
+	width: 100%;
+	overflow: scroll;
+	border-radius: 12px;
+	margin: 10px 5px;
+}
+
+/* 行代码块 */
+code:not(.hljs) {
+	border: 1px solid rgba(var(--color-content));
+	background-color: rgba(var(--color-content));
+	color: rgba(var(--color-bg));
+	padding: 3px;
+	border-radius: 6px;
+}
+pre::-webkit-scrollbar {
+	height: 3px;
+	width: 0;
+	color: #eee;
 }

@@ -1,12 +1,12 @@
+import { get } from 'http'
 import LdBanner from '../components/LdBanner'
 import LdCategory from '../components/LdCategory'
 import LdNoteList from '../components/LdNoteList'
 import LdSign from '../components/LdSign'
-import { getNotesList } from '@/api/notes'
+import { fetchPost } from '@/utils/request'
 
 export default async function Home() {
-	const { code, data } = await handleGetNoteList()
-	console.log(data)
+	const data = await getHomePostData()
 	return (
 		<div>
 			{/* 签名 */}
@@ -16,27 +16,31 @@ export default async function Home() {
 			{/* 分类图 */}
 			{/* <LdCategory></LdCategory> */}
 			{/* 文章列表 */}
-			<div className='recentNotes '>
-				<LdNoteList data={data.list}></LdNoteList>
+			<div className='recentNotes'>
+				<LdNoteList data={data}></LdNoteList>
 			</div>
 			{/* .. */}
 		</div>
 	)
 }
 
-export async function handleGetNoteList() {
-	let result = await getNotesList({
-		"page_no": 1,
-		"title": "",
-		"tag_ids": "",
-		"keywords": "",
-		"is_original": false,
-		"is_recommended": false,
-		"type_id": 0,
-		"page_size": 10
-
-	})
-	return result
+// 获取首页全部的 notes
+export async function getHomePostData() {
+	try {
+		const res = await fetchPost('http://localhost:8888/api/notes/list', {
+			page_no: 1,
+			title: '',
+			tag_ids: '',
+			keywords: '',
+			is_original: false,
+			is_recommended: false,
+			type_id: 0,
+			page_size: 10,
+		})
+		if (res.code === 0 && res?.data?.list) {
+			return res?.data?.list
+		}
+	} catch (e) {
+		return []
+	}
 }
-
-
