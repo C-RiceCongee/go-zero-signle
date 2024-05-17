@@ -2,8 +2,10 @@
 pre {
 	width: 100%;
 	overflow: scroll;
-	border-radius: 12px;
 	margin: 10px 5px !important;
+	border-radius: 6px;
+	box-shadow: rgb(var(--color-2sec-content)) 0px 0px 0px 1px inset,
+		rgb(var(--color-2sec-content)) 0px 0px 0px 1px;
 }
 code:not(.hljs) {
 	border: 1px solid rgba(var(--color-content));
@@ -87,4 +89,9 @@ tfoot th {
 
 tfoot td {
 	font-weight: bold;
+}
+
+.ldMdRenderer > a {
+	color: rgb(86, 111, 169) !important;
+	text-decoration: underline rgb(86, 111, 169) !important;
 }
