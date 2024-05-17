@@ -26,6 +26,7 @@ import css from 'highlight.js/lib/languages/css.js'
 import html from 'highlight.js/lib/languages/haml'
 import '../../styles/render/render.css'
 import {
+	MouseEventHandler,
 	memo,
 	useCallback,
 	useEffect,
@@ -45,14 +46,15 @@ hljs.registerLanguage('vue', html)
 hljs.registerLanguage('html5', html)
 
 import "./styles.css"
+import LdViewImage from './LdViewImage'
 // 渲染TOC
 interface ILdRenderToc {
 	html: string
 }
 const LdRenderToc: React.FC<ILdRenderToc> = memo(({ html }) => {
 	const domRef = useRef<HTMLDivElement>(null)
-	const onTocClickHandler = (e: MouseEventHandler) => {
-		const target = e.target as HTMLElement
+	const onTocClickHandler = (e: any) => {
+		const target = e.target
 		e.preventDefault()
 		// 使用自定义滚动
 		if (target) {
@@ -69,7 +71,7 @@ const LdRenderToc: React.FC<ILdRenderToc> = memo(({ html }) => {
 	}
 	if (html) {
 		return (
-			<div className='fixed right-0 z-1 w-68  r-0 z-0 bg-skin-bg  p-2 text-sm top-[64px] shadow-ld-shadow-1 backdrop-blur-xl rounded-t-lg'>
+			<div className='fixed duration-75 right-0 z-1 w-68 translate-x-[90%] hover:translate-x-[0%]  r-0 z-0 bg-skin-bg  p-2 text-sm top-[64px] shadow-ld-shadow-1 backdrop-blur-xl rounded-t-lg'>
 				<div onClick={onTocClickHandler} ref={domRef} dangerouslySetInnerHTML={{ __html: html }}></div>
 			</div>
 		)
@@ -82,7 +84,7 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	const { content } = props
 	const [htmlToc, setHtmlToc] = useState('')
 	const [renderContent, setRenderContent] = useState('')
-
+	const [previewImgUrl, setPreviewImageUrl] = useState<string>('')
 	const handleRender = useCallback(() => {
 		const md: MarkdownIt = markdownit({
 			html: true,
@@ -130,10 +132,23 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	useEffect(() => {
 		handleRender()
 	}, [handleRender])
+	enum ProcessTag {
+		img = 'IMG'
+	}
+	const RenderClickHandler = (e: any) => {
+		let target = e.target as HTMLElement
+		const tagName = target.tagName
+		if (tagName === ProcessTag.img) {
+			let url = target.getAttribute("src")
+			setPreviewImageUrl(url || '')
+		}
+	}
 	return (
 		<div>
 			<LdRenderToc html={htmlToc} />
+			<LdViewImage list={[]} url={previewImgUrl} setUrl={setPreviewImageUrl} />
 			<div
+				onClick={RenderClickHandler}
 				className='ldMdRenderer scroll-smooth'
 				dangerouslySetInnerHTML={{ __html: renderContent }}
 			></div>
