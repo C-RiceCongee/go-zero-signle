@@ -20,7 +20,7 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} bg-skin-bg text-skin-content  scroll-m-0 lg:w-full m-auto`}
 			>
-				<div className='menu sticky top-0'>
+				<div className='menu sticky top-0 z-10'>
 					<LdMenu></LdMenu>
 				</div>
 				<div className='lg:w-1/2 md:w-full m-auto p-10'>{children}</div>

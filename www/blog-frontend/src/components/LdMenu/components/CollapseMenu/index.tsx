@@ -9,7 +9,7 @@ const CollapseMenu: React.FC<ICollapseMenuProps> = props => {
 	const { list, changeTheme } = props
 	const [open, setOpen] = useState<Boolean>(false)
 	return (
-		<div className='collapseMenu  shadow-2xl rounded-b-lg '>
+		<div className='collapseMenu   shadow-2xl rounded-b-lg '>
 			<div className='bars' onClick={() => setOpen(!open)}>
 				<span
 					className={`transition-all duration-10 bg-skin-menu-content bread1 w-10 h-1 mt-1 mb-1 block  ${open && 'rotate-45  -translate-x-2 translate-y-2'
@@ -26,7 +26,7 @@ const CollapseMenu: React.FC<ICollapseMenuProps> = props => {
 			</div>
 
 			<div
-				className={`fullScreeMenu  shadow-2xl rounded-b-lg transition-top duration-75  w-full  bg-skin-menu-bg backdrop-blur-xl left-0  absolute  ${open ? `top-16` : `-top-[2000px] opacity-0`
+				className={`fullScreeMenu  shadow-2xl rounded-b-lg transition-top duration-75  w-full  bg-skin-menu-bg backdrop-blur-xl left-0  absolute  ${open ? `top-16 z-20` : `-top-[2000px] opacity-0`
 					}`}
 			>
 				{list.map(v => {

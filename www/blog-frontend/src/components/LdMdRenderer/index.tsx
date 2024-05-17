@@ -3,10 +3,14 @@ interface LdMdRendererProps {
 	content: string
 }
 import markdownit from 'markdown-it'
+// @ts-ignore
 import markdownItDeflist from 'markdown-it-deflist'
 import { markdownItTable } from 'markdown-it-table'
 import markdownItContainer from 'markdown-it-container'
+
+// @ts-ignore
 import footnot from 'markdown-it-footnote'
+// @ts-ignore
 import { full as emoji } from 'markdown-it-emoji'
 import markdownItAnchor from 'markdown-it-anchor'
 import markdownItTocDoneRight from 'markdown-it-toc-done-right'
@@ -18,8 +22,11 @@ import go from 'highlight.js/lib/languages/go'
 import shell from 'highlight.js/lib/languages/shell'
 import diff from 'highlight.js/lib/languages/diff.js'
 import typescript from 'highlight.js/lib/languages/typescript'
+import css from 'highlight.js/lib/languages/css.js'
+import html from 'highlight.js/lib/languages/haml'
 import '../../styles/render/render.css'
 import {
+	memo,
 	useCallback,
 	useEffect,
 	useLayoutEffect,
@@ -32,27 +39,45 @@ hljs.registerLanguage('shell', shell)
 hljs.registerLanguage('sh', shell)
 hljs.registerLanguage('diff', diff)
 hljs.registerLanguage('typescript', typescript)
-const LdRenderToc = (html: string) => {
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('html', html)
+hljs.registerLanguage('vue', html)
+hljs.registerLanguage('html5', html)
+
+import "./styles.css"
+// 渲染TOC
+interface ILdRenderToc {
+	html: string
+}
+const LdRenderToc: React.FC<ILdRenderToc> = memo(({ html }) => {
 	const domRef = useRef<HTMLDivElement>(null)
-	useLayoutEffect(() => {
-		domRef.current?.addEventListener('click', e => {
-			e.preventDefault()
-			if (e.target as HTMLAnchorElement) {
-				const id = e.target!.getAttribute('href').substring(1)
-				document.getElementById(id)!.scrollIntoView({
+	const onTocClickHandler = (e: MouseEventHandler) => {
+		const target = e.target as HTMLElement
+		e.preventDefault()
+		// 使用自定义滚动
+		if (target) {
+			const id = target.getAttribute('href')
+			if (id) {
+				document.getElementById(id.substring(1))?.scrollIntoView({
 					behavior: 'smooth',
 					block: 'center',
 					inline: 'nearest',
 				})
 			}
-		})
-	}, [])
-	return (
-		<div className='fixed bg-skin-bg right-0 p-10 text-sm top-[68px] shadow-ld-shadow-1  backdrop-blur-xl radius-sm'>
-			<div ref={domRef} dangerouslySetInnerHTML={{ __html: html }}></div>
-		</div>
-	)
-}
+
+		}
+	}
+	if (html) {
+		return (
+			<div className='fixed right-0 z-1 w-68  r-0 z-0 bg-skin-bg  p-2 text-sm top-[64px] shadow-ld-shadow-1 backdrop-blur-xl rounded-t-lg'>
+				<div onClick={onTocClickHandler} ref={domRef} dangerouslySetInnerHTML={{ __html: html }}></div>
+			</div>
+		)
+	} else {
+		return <></>
+	}
+
+})
 const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	const { content } = props
 	const [htmlToc, setHtmlToc] = useState('')
@@ -72,7 +97,9 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 								.value +
 							'</code></pre>'
 						)
-					} catch (__) {}
+					} catch (e) {
+						console.log(e)
+					}
 				}
 
 				return (
@@ -90,15 +117,12 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 			.use(markdownItAnchor, {
 				permalink: true,
 				permalinkBefore: true,
-				format: (x, htmlencode) => {
-					console.log(x)
-					console.log(htmlencode)
-					return `<span>${htmlencode(x)}</span>`
-				},
 			})
 			.use(markdownItTocDoneRight, {
-				callback: html => {
-					setHtmlToc(html)
+				callback: (html: string) => {
+					if (html !== '<nav class="table-of-contents"></nav>') {
+						setHtmlToc(html)
+					}
 				},
 			})
 		setRenderContent(md.render(content))
@@ -108,7 +132,7 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	}, [handleRender])
 	return (
 		<div>
-			{LdRenderToc(htmlToc)}
+			<LdRenderToc html={htmlToc} />
 			<div
 				className='ldMdRenderer scroll-smooth'
 				dangerouslySetInnerHTML={{ __html: renderContent }}
@@ -117,4 +141,4 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	)
 }
 
-export default LdMdRenderer
+export default memo(LdMdRenderer)
