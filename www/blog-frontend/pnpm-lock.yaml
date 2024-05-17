@@ -20,6 +20,9 @@ dependencies:
   markdown-it-deflist:
     specifier: ^3.0.0
     version: 3.0.0
+  markdown-it-table:
+    specifier: ^4.1.1
+    version: 4.1.1
   next:
     specifier: 14.2.3
     version: 14.2.3(react-dom@18.0.0)(react@18.0.0)
@@ -40,6 +43,9 @@ devDependencies:
   '@types/markdown-it':
     specifier: ^14.1.1
     version: 14.1.1
+  '@types/markdown-it-container':
+    specifier: ^2.0.10
+    version: 2.0.10
   '@types/node':
     specifier: ^20
     version: 20.0.0
@@ -306,6 +312,12 @@ packages:
   /@types/lodash@4.17.4:
     resolution: {integrity: sha512-wYCP26ZLxaT3R39kiN2+HcJ4kTd3U1waI/cY7ivWYqFP6pW3ZNpvi6Wd6PHZx7T/t8z0vlkXMg3QYLa7DZ/IJQ==}
     dev: false
+
+  /@types/markdown-it-container@2.0.10:
+    resolution: {integrity: sha512-zv+YxrlSYRq51e9kzm3orv4OvF4U79Ll1OyplNXr00o4ZC/8PukJk/jEWH7CnsMtrSWZlyv0czhz42jm9J4uLw==}
+    dependencies:
+      '@types/markdown-it': 14.1.1
+    dev: true
 
   /@types/markdown-it@14.1.1:
     resolution: {integrity: sha512-4NpsnpYl2Gt1ljyBGrKMxFYAYvpqbnnkgP/i/g+NLpjEUa3obn1XJCur9YbEXKDAkaXqsR1LbDnGEJ0MmKFxfg==}
@@ -1994,6 +2006,11 @@ packages:
 
   /markdown-it-deflist@3.0.0:
     resolution: {integrity: sha512-OxPmQ/keJZwbubjiQWOvKLHwpV2wZ5I3Smc81OjhwbfJsjdRrvD5aLTQxmZzzePeO0kbGzAo3Krk4QLgA8PWLg==}
+    dev: false
+
+  /markdown-it-table@4.1.1:
+    resolution: {integrity: sha512-dzFHRwCe97sXD071Gw/LSIwgAcO2vNsT0BcPCmnrKhNW/W57Bnknl8EaC+j4hM3bAqus1CiVPcTQAvLkUfHLhw==}
+    engines: {node: '>12.6'}
     dev: false
 
   /markdown-it@14.1.0:

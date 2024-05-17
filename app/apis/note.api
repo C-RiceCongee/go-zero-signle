@@ -7,53 +7,79 @@ info(
 	email: "1933310737@qq.com"
 	version: "1.0.0"
 )
-// AddNewNoteRequest 添加新文章请求体
-type AddNewNoteRequest {
-	Title         string `json:"title"`
-	ContentMd     string `json:"content_md"`
-	CoverImage    string `json:"cover_image"`
-	Top           bool   `json:"top"`
-	TypeId        int64  `json:"type_id"`
-	TagIds        string `json:"tag_ids"`
-	IsOriginal    bool   `json:"is_original"`
-	IsRecommended bool   `json:"is_recommended"`
-	Description   string `json:"description"`
-	Keywords      string `json:"keywords"`
-}
-// AddNewNoteRequest 添加新文章响应体
-type AddNewNoteResponse {
-}
 
-// GetNoteListRequest 获取列表请求体
-type GetNoteListRequest {
-	PageNo        int    `json:"page_no"`
-	PageSize      int    `json:"page_size"`
-	Title         string `json:"title"`
-	TypeId        int64  `json:"type_id"`
-	TagIds        string `json:"tag_ids"`
-	IsOriginal    bool   `json:"is_original"`
-	IsRecommended bool   `json:"is_recommended"`
-	Keywords      string `json:"keywords"`
-}
-// GetNoteListResponse 获取列表响应体
-type GetNoteListResponseItem {
-	Id         	  int64 `json:"id"`
-	Title         string `json:"title"`
-	CoverImage    string `json:"cover_image"`
-	Description   string `json:"description"`
-	Top           bool   `json:"top"`
-	TypeId        int64  `json:"type_id"`
-	NoteType      int32  `json:"note_type`
-	TagIds        string `json:"tag_ids"`
-	IsOriginal    bool   `json:"is_original"`
-	IsRecommended bool   `json:"is_recommended"`
-} 
+// 添加文章
+type (
+	// AddNewNoteRequest 添加新文章请求体
+	AddNewNoteRequest {
+		Title         string `json:"title"`
+		ContentMd     string `json:"content_md"`
+		CoverImage    string `json:"cover_image"`
+		Top           bool   `json:"top"`
+		TypeId        int64  `json:"type_id"`
+		TagIds        string `json:"tag_ids"`
+		IsOriginal    bool   `json:"is_original"`
+		IsRecommended bool   `json:"is_recommended"`
+		Description   string `json:"description"`
+		Keywords      string `json:"keywords"`
+	}
+	// AddNewNoteRequest 添加新文章响应体
+	AddNewNoteResponse {
+	}
+)
 
-type 
-type GetNoteListResponse {
-	List  []GetNoteListResponseItem `json:"list"`
-	Total int64                     `json:"total"`
-}
+// 获取文章列表
+type (
+	// GetNoteListRequest 获取列表请求体
+	GetNoteListRequest {
+		PageNo        int    `json:"page_no"`
+		PageSize      int    `json:"page_size"`
+		Title         string `json:"title"`
+		TypeId        int64  `json:"type_id"`
+		TagIds        string `json:"tag_ids"`
+		IsOriginal    bool   `json:"is_original"`
+		IsRecommended bool   `json:"is_recommended"`
+		Keywords      string `json:"keywords"`
+	}
+	// GetNoteListResponse 获取列表响应体
+	GetNoteListResponseItem {
+		Id            int64  `json:"id"`
+		Title         string `json:"title"`
+		CoverImage    string `json:"cover_image"`
+		Description   string `json:"description"`
+		Top           bool   `json:"top"`
+		TypeId        int64  `json:"type_id"`
+		NoteType      int32  `json:"note_type"`
+		TagIds        string `json:"tag_ids"`
+		IsOriginal    bool   `json:"is_original"`
+		IsRecommended bool   `json:"is_recommended"`
+	}
+	GetNoteListResponse {
+		List  []GetNoteListResponseItem `json:"list"`
+		Total int64                     `json:"total"`
+	}
+)
+
+// 获取文章详情
+type (
+	GetNoteDetailsRequest {
+		Id int64 `json:"id"`
+	}
+	GetNoteDetailsResponse {
+		Id            int64  `json:"id"`
+		Title         string `json:"title"`
+		CoverImage    string `json:"cover_image"`
+		Description   string `json:"description"`
+		ContentMd     string `json:"content_md"`
+		Top           bool   `json:"top"`
+		TypeId        int64  `json:"type_id"`
+		NoteType      int32  `json:"note_type"`
+		TagIds        string `json:"tag_ids"`
+		IsOriginal    bool   `json:"is_original"`
+		IsRecommended bool   `json:"is_recommended"`
+	}
+)
+
 @server(
 	prefix: api/notes
 )
@@ -69,5 +95,5 @@ service app {
 
 	// 获取文章详情
 	@handler GetNoteDetailsById
-	post /get/:id () returns ()
+	post /details (GetNoteDetailsRequest) returns (GetNoteDetailsResponse)
 }

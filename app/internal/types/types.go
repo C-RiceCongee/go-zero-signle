@@ -17,6 +17,24 @@ type AddNewNoteRequest struct {
 type AddNewNoteResponse struct {
 }
 
+type GetNoteDetailsRequest struct {
+	Id int64 `json:"id"`
+}
+
+type GetNoteDetailsResponse struct {
+	Id            int64  `json:"id"`
+	Title         string `json:"title"`
+	CoverImage    string `json:"cover_image"`
+	Description   string `json:"description"`
+	ContentMd     string `json:"content_md"`
+	Top           bool   `json:"top"`
+	TypeId        int64  `json:"type_id"`
+	NoteType      int32  `json:"note_type"`
+	TagIds        string `json:"tag_ids"`
+	IsOriginal    bool   `json:"is_original"`
+	IsRecommended bool   `json:"is_recommended"`
+}
+
 type GetNoteListRequest struct {
 	PageNo        int    `json:"page_no"`
 	PageSize      int    `json:"page_size"`
@@ -40,7 +58,7 @@ type GetNoteListResponseItem struct {
 	Description   string `json:"description"`
 	Top           bool   `json:"top"`
 	TypeId        int64  `json:"type_id"`
-	NoteType      int32  `json:"note_type`
+	NoteType      int32  `json:"note_type"`
 	TagIds        string `json:"tag_ids"`
 	IsOriginal    bool   `json:"is_original"`
 	IsRecommended bool   `json:"is_recommended"`

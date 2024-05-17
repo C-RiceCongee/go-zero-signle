@@ -41,7 +41,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/get/:id",
+				Path:    "/details",
 				Handler: GetNoteDetailsByIdHandler(serverCtx),
 			},
 			{

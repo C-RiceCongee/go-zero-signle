@@ -1,0 +1,90 @@
+/* 行代码块 */
+pre {
+	width: 100%;
+	overflow: scroll;
+	border-radius: 12px;
+	margin: 10px 5px !important;
+}
+code:not(.hljs) {
+	border: 1px solid rgba(var(--color-content));
+	background-color: rgba(var(--color-content));
+	color: rgba(var(--color-bg));
+	padding: 2px;
+	border-radius: 6px;
+	margin: 5px;
+	text-align: center;
+}
+code::-webkit-scrollbar {
+	width: 5px;
+	height: 8px;
+	background-color: rgb(48, 47, 86); /* or add it to the track */
+}
+code::-webkit-scrollbar-thumb {
+	background: rgba(169, 168, 169);
+	border-radius: 24px;
+}
+pre::-webkit-scrollbar {
+	display: none;
+}
+
+/* 列表样式 */
+ul {
+	list-style: disc !important;
+	margin-top: 8px !important;
+	margin-bottom: 8px !important;
+	padding-left: 20px !important;
+}
+p {
+	white-space: pre-wrap !important;
+	margin: 1rem 0 !important;
+}
+/* 引用样式 */
+blockquote {
+	display: block;
+	font-size: 0.9em;
+	border-left: 3px solid rgb(var(--color-2sec-content)) !important;
+	padding: 15px 30px 15px 20px;
+	margin: 18px 0 !important;
+	background: rgba(var(--color-blockquote-bg));
+}
+/* 表格的样式 */
+table {
+	border-collapse: collapse;
+	border: 2px dashed rgb(var(--color-content)) !important;
+	font-family: sans-serif;
+	font-size: 0.8rem;
+	letter-spacing: 1px;
+}
+
+caption {
+	caption-side: bottom;
+	padding: 10px;
+	font-weight: bold;
+}
+
+thead,
+tfoot {
+	background-color: rgb(var(--color-bg));
+}
+
+th,
+td {
+	border: 1px solid rgb(var(--color-1st-content));
+	padding: 8px 10px;
+}
+
+td:last-of-type {
+	text-align: center;
+}
+
+tbody > tr:nth-of-type(even) {
+	background-color: rgb(var(--color-bg));
+}
+
+tfoot th {
+	text-align: right;
+}
+
+tfoot td {
+	font-weight: bold;
+}

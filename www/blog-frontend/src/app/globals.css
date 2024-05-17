@@ -1,42 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('../styles/highlights/shades-of-purple.min.css');
+/* @import url('../styles/highlights/shades-of-purple.min.css'); */
+@import url('../styles/highlights/github-dark-dimmed.min.css');
+@import url('../styles/render/render.css');
 @layer base {
 	:root {
+		/* 全局背景色 */
 		--color-bg: 223, 222, 218;
+
+		/* 全局内容 */
 		--color-content: 145, 21, 70;
+
+		/* 不同级别的内容颜色 */
 		--color-1st-content: 134, 20, 61;
 		--color-2sec-content: 134, 20, 61;
+
+		/* 菜单颜色 */
 		--color-menu-bg: 223, 222, 218, 0.3;
 		--color-menu-content: 145, 21, 70;
-	}
 
+		/*markdown blockquote 引用区域 */
+		--color-blockquote-content: 68, 72, 80;
+		--color-blockquote-bg: 246, 248, 250;
+	}
+	.sink-white {
+		/* 全局背景色 */
+		--color-bg: 223, 222, 218;
+
+		/* 全局内容 */
+		--color-content: 145, 21, 70;
+
+		/* 不同级别的内容颜色 */
+		--color-1st-content: 134, 20, 61;
+		--color-2sec-content: 134, 20, 61;
+
+		/* 菜单颜色 */
+		--color-menu-bg: 223, 222, 218, 0.3;
+		--color-menu-content: 145, 21, 70;
+
+		/*markdown blockquote 引用区域 */
+		--color-blockquote-content: 68, 72, 80;
+		--color-blockquote-bg: 246, 248, 250;
+	}
 	.skin-dark {
-		--color-bg: 0, 0, 0;
-		--color-content: 255, 255, 255;
-		--color-1st-content: 203, 203, 203;
-		--color-2sec-content: 152, 152, 152;
-		--color-menu-bg: 0, 0, 0, 0.3;
-		--color-menu-content: 255, 255, 255;
-	}
+		/* 全局背景色 */
+		--color-bg: 41, 39, 38;
 
-	.skin-gray {
-		--color-bg: 223, 222, 218;
-		--color-content: 145, 21, 70;
-		--color-1st-content: 134, 20, 61;
-		--color-2sec-content: 134, 20, 61;
-		--color-menu-bg: 223, 222, 218, 0.3;
-		--color-menu-content: 145, 21, 70;
-	}
+		/* 全局内容 */
+		--color-content: 248, 247, 247;
 
-	.skin-idea {
-		--color-bg: 55, 83, 145;
-		--color-content: 255, 255, 255;
-		--color-1st-content: 203, 203, 203;
-		--color-2sec-content: 152, 152, 152;
-		--color-menu-bg: 57, 79, 148, 0.3;
-		--color-menu-content: 243, 249, 255;
+		/* 不同级别的内容颜色 */
+		--color-1st-content: 240, 198, 198;
+		--color-2sec-content: 247, 225, 225;
+
+		/* 菜单颜色 */
+		--color-menu-bg: 41, 39, 38;
+		--color-menu-content: 239, 233, 236;
+
+		/*markdown blockquote 引用区域 */
+		--color-blockquote-content: 54, 54, 54;
+		--color-blockquote-bg: 54, 54, 54;
 	}
 }
 
@@ -53,45 +77,35 @@ body {
 }
 
 * {
-	font-family: 'MyFont';
+	font-family: 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	letter-spacing: 0.1ch;
+	word-wrap: break-word;
 }
-
 h1 {
-	font-size: 3rem;
-}
-h2 {
-	font-size: 2.5rem;
-}
-h3 {
 	font-size: 2rem;
 }
-h4 {
+h2 {
 	font-size: 1.8rem;
 }
+h3 {
+	font-size: 1.6rem;
+}
+h4 {
+	font-size: 0.1.2rem;
+}
 h5 {
-	font-size: 1.4rem;
+	font-size: 1rem;
 }
 h6 {
 	font-size: 1rem;
 }
-
-pre {
-	width: 100%;
-	overflow: scroll;
-	border-radius: 12px;
-	margin: 10px 5px;
-}
-
-/* 行代码块 */
-code:not(.hljs) {
-	border: 1px solid rgba(var(--color-content));
-	background-color: rgba(var(--color-content));
-	color: rgba(var(--color-bg));
-	padding: 3px;
-	border-radius: 6px;
-}
-pre::-webkit-scrollbar {
-	height: 3px;
-	width: 0;
-	color: #eee;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 2rem 0;
+	/* margin-top: 1rem; */
+	border-bottom: 0.2rem solid;
 }
