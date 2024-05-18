@@ -17,7 +17,7 @@
 		--color-2sec-content: 134, 20, 61;
 
 		/* 菜单颜色 */
-		--color-menu-bg: 223, 222, 218, 0.3;
+		--color-menu-bg: 223, 222, 218, 0.5;
 		--color-menu-content: 145, 21, 70;
 
 		/*markdown blockquote 引用区域 */
@@ -36,7 +36,7 @@
 		--color-2sec-content: 134, 20, 61;
 
 		/* 菜单颜色 */
-		--color-menu-bg: 223, 222, 218, 0.3;
+		--color-menu-bg: 223, 222, 218, 0.5;
 		--color-menu-content: 145, 21, 70;
 
 		/*markdown blockquote 引用区域 */
@@ -55,7 +55,7 @@
 		--color-2sec-content: 247, 225, 225;
 
 		/* 菜单颜色 */
-		--color-menu-bg: 41, 39, 38;
+		--color-menu-bg: 41, 39, 38, 0.5;
 		--color-menu-content: 239, 233, 236;
 
 		/*markdown blockquote 引用区域 */

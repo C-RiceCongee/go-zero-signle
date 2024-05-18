@@ -1,26 +1,43 @@
+import useDragMove from "@/hooks/useDragMove"
 import _ from "lodash"
-import { memo, useEffect, useLayoutEffect, useRef, useState } from "react"
-const RenderPreview = memo(({ url, setUrl }) => {
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+interface IRenderPreview {
+    url: string,
+    setUrl: (url: string) => void
+}
+const RenderPreview: React.FC<IRenderPreview> = memo(({ url, setUrl }) => {
+
     const ref = useRef<HTMLDivElement>(null)
+
+    // 缩放大小
     const [scale, setScale] = useState(1)
+
+    // 滚轮调整缩放
+    const onMouseWheel = useCallback(_.throttle((e) => {
+        if (e.wheelDelta > 0) {
+            setScale(v => v += 0.05)
+        } else {
+            setScale(v => v -= 0.05)
+        }
+    }, 50), [scale])
     useEffect(() => {
         document.body.style.overflow = "hidden"
-        const onMouseWheel = _.throttle((e) => {
-            console.log(e.wheelDelta)
-            if (e.wheelDelta > 0) {
-                setScale(v => v += 0.05)
-            } else {
-                setScale(v => v -= 0.05)
-            }
-        }, 50)
-        ref.current?.addEventListener("wheel", onMouseWheel)
+        if (ref.current) {
+            ref.current.addEventListener("wheel", onMouseWheel)
+        }
+        return () => {
+            document.body.style.overflow = "scroll"
+            ref.current?.removeEventListener('wheel', onMouseWheel)
+        }
     }, [])
     const onExit = () => {
-        document.body.style.overflow = "scroll"
         setUrl('')
     }
-    return <div ref={ref} className="h-lvh w-lvw fixed left-0 top-0 z-50 flex items-center justify-center bg-skin-bg">
-        <img draggable={false} className={`w-4/5 duration-100 origin-center`} style={{ transform: `scale(${scale})` }} src={url}></img>\
+    const imgRef = useRef<HTMLImageElement>(null)
+    // const t = useDragMove(imgRef)
+
+    return <div ref={ref} className="h-full w-full fixed left-0 top-0 z-50 flex items-center justify-center  bg-red-600 drop-shadow-sm">
+        <img ref={imgRef} draggable={true} className={`w-4/5 duration-100 origin-cente`} style={{ transform: `scale(${scale})` }} src={url}></img>
         <div className="bottomAction fixed bottom-10 flex items-center justify-center">
             <div className="scalePercent">
                 缩放比例:{Math.floor(scale * 100)}%

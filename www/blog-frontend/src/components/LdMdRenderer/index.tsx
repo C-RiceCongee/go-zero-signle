@@ -84,7 +84,7 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	const { content } = props
 	const [htmlToc, setHtmlToc] = useState('')
 	const [renderContent, setRenderContent] = useState('')
-	const [previewImgUrl, setPreviewImageUrl] = useState<string>('')
+	const [previewImgUrl, setPreviewImageUrl] = useState<string>('http://qiniuyun.quancundexiwang.wang/Feb-27-2023%2016-40-00.gif')
 	const handleRender = useCallback(() => {
 		const md: MarkdownIt = markdownit({
 			html: true,
@@ -135,9 +135,11 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	enum ProcessTag {
 		img = 'IMG'
 	}
+	// RenderClickHandler 点击事件
 	const RenderClickHandler = (e: any) => {
 		let target = e.target as HTMLElement
 		const tagName = target.tagName
+		// 事件代理处理不同元素的点击
 		if (tagName === ProcessTag.img) {
 			let url = target.getAttribute("src")
 			setPreviewImageUrl(url || '')
@@ -145,7 +147,9 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	}
 	return (
 		<div>
+			{/* toc 目录组件 */}
 			<LdRenderToc html={htmlToc} />
+			{/* 图片预览组件 */}
 			<LdViewImage list={[]} url={previewImgUrl} setUrl={setPreviewImageUrl} />
 			<div
 				onClick={RenderClickHandler}
