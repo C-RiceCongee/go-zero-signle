@@ -84,7 +84,7 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	const { content } = props
 	const [htmlToc, setHtmlToc] = useState('')
 	const [renderContent, setRenderContent] = useState('')
-	const [previewImgUrl, setPreviewImageUrl] = useState<string>('http://qiniuyun.quancundexiwang.wang/Feb-27-2023%2016-40-00.gif')
+	const [previewImgUrl, setPreviewImageUrl] = useState<string>('')
 	const handleRender = useCallback(() => {
 		const md: MarkdownIt = markdownit({
 			html: true,
