@@ -1,8 +1,4 @@
-import { get } from 'http'
-import LdBanner from '../components/LdBanner'
-import LdCategory from '../components/LdCategory'
 import LdNoteList from '../components/LdNoteList'
-import LdSign from '../components/LdSign'
 import { fetchPost } from '@/utils/request'
 import LdBook from '@/components/LdBook'
 
@@ -20,7 +16,7 @@ export default async function Home() {
 			<h3>最近看的书</h3>
 			<div className='flex overflow-scroll'>
 				{
-					book.map(v => <LdBook description={''} tag={''} {...v}></LdBook>)
+					book.map(v => <LdBook key={v.name}  {...v}></LdBook>)
 				}
 			</div>
 			{/* 文章列表 */}
@@ -35,7 +31,7 @@ export default async function Home() {
 }
 
 // 获取首页全部的 notes
-export async function getHomePostData() {
+async function getHomePostData() {
 	try {
 		const res = await fetchPost('http://localhost:8888/api/notes/list', {
 			page_no: 1,
@@ -56,7 +52,7 @@ export async function getHomePostData() {
 }
 
 // 获取最近读的书
-export async function getRencentBooks() {
+async function getRencentBooks() {
 	return [
 		{
 			name: "在细雨中呐喊",

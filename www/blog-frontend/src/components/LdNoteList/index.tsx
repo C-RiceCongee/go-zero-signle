@@ -1,8 +1,9 @@
-import LazyImage from '../LdLazyImage'
-import Link from 'next/link'
+import { NoteItem } from '@/types/note'
 import Notes from './components/Notes'
-
-const LdNoteList = ({ data }) => {
+interface ILdNoteListProps {
+	data: NoteItem[]
+}
+const LdNoteList: React.FC<ILdNoteListProps> = ({ data }) => {
 	return (
 		<div className='LdNoteList'>
 			{data.map(v => {

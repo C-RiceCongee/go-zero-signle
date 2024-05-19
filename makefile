@@ -17,7 +17,8 @@ app:
 
 web:
 	cd www/blog-frontend && npm run dev
-
+buildweb:
+	cd www/blog-frontend && npm run build
 # 提交代码
 commit = "update code"
 

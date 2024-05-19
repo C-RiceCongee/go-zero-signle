@@ -5,7 +5,7 @@ const useDragMove = (ref: RefObject<HTMLElement>) => {
     const [canMove, setCanMove] = useState(false)
 
     // 切换canmove
-    const mouseDownHandler = useCallback((e) => {
+    const mouseDownHandler = useCallback(() => {
         setCanMove(!canMove)
     }, [canMove])
 

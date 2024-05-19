@@ -114,7 +114,7 @@ const LdMenu = () => {
 					Theme
 				</div>
 			</header>
-			<header className='mobile-menu bg-skin-menu-bg backdrop-blur md:hidden flex justify-between pt-5 pb-5 pl-5 pr-5'>
+			<header className='mobile-menu bg-skin-menu-bg text-skin-menu-content backdrop-blur md:hidden flex justify-between pt-5 pb-5 pl-5 pr-5'>
 				<div className='logo'>LD-村望老弟</div>
 				<CollapseMenu list={menuList} changeTheme={changeTheme}></CollapseMenu>
 			</header>

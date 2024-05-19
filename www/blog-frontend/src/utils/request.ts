@@ -1,12 +1,16 @@
 import axios from 'axios'
 
-let baseURL
+let baseURL: string
 if (process.env.NODE_ENV === 'production') {
     baseURL = 'http://localhost:8888'
 } else {
     baseURL = 'http://localhost:8888'
 }
-
+export interface IResponse<T> {
+    code: number,
+    msg: string,
+    data: T
+}
 // 拦截器
 axios.interceptors.response.use((response) => {
     return response
@@ -23,7 +27,7 @@ axios.interceptors.request.use((config) => {
 })
 
 // axios的get请求
-export function fetchGet(url: string, params: any) {
+export function fetchGet(url: string, params: any): any {
     return new Promise((resolve, reject) => {
         axios.get(url, {
             params,
@@ -38,7 +42,7 @@ export function fetchGet(url: string, params: any) {
 
 // axios的post请求
 export function fetchPost(url: string,
-    data: any) {
+    data: any): any {
     return new Promise((resolve, reject) => {
         axios({
             url,

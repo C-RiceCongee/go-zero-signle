@@ -1,4 +1,3 @@
-import useDragMove from "@/hooks/useDragMove"
 import _ from "lodash"
 import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 interface IRenderPreview {
@@ -46,7 +45,8 @@ const RenderPreview: React.FC<IRenderPreview> = memo(({ url, setUrl }) => {
         </div>
     </div>
 })
-const LdViewImage = (props) => {
+RenderPreview.displayName = 'RenderPreview'
+const LdViewImage = (props: JSX.IntrinsicAttributes & IRenderPreview) => {
     if (props.url) {
         return <RenderPreview {...props} ></RenderPreview>
     } else {

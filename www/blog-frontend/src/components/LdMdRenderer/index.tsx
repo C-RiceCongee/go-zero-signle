@@ -80,6 +80,7 @@ const LdRenderToc: React.FC<ILdRenderToc> = memo(({ html }) => {
 	}
 
 })
+LdRenderToc.displayName = 'LdRenderToc'
 const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 	const { content } = props
 	const [htmlToc, setHtmlToc] = useState('')
@@ -150,7 +151,7 @@ const LdMdRenderer: React.FC<LdMdRendererProps> = props => {
 			{/* toc 目录组件 */}
 			<LdRenderToc html={htmlToc} />
 			{/* 图片预览组件 */}
-			<LdViewImage list={[]} url={previewImgUrl} setUrl={setPreviewImageUrl} />
+			<LdViewImage url={previewImgUrl} setUrl={setPreviewImageUrl} />
 			<div
 				onClick={RenderClickHandler}
 				className='ldMdRenderer scroll-smooth'

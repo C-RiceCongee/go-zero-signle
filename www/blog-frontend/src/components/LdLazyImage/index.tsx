@@ -10,6 +10,7 @@ const LazyImage: React.FC<LazyImageProps> = props => {
 	const imgRef = useRef<HTMLImageElement>(null)
 	const { isIn } = useLazy(imgRef)
 	return (
+		// @ts-ignore
 		<img
 			alt='图片异常'
 			ref={imgRef}
