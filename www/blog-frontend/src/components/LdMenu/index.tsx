@@ -90,15 +90,15 @@ const LdMenu = () => {
 	}
 	return (
 		<div className='LdMenu'>
-			<header className='pc-menu backdrop-blur-xl bg-skin-menu-bg pt-5 pb-5 pl-5 pr-5  hidden md:flex justify-between'>
+			<header className='pc-menu  backdrop-blur-xl bg-skin-menu-bg  pt-5 pb-5 pl-5 pr-5  hidden md:flex justify-between'>
 				<div className='logo font-bold'>LD-村望老弟</div>
-				<div className='menuContainer flex'>
+				<div className='menuContainer flex '>
 					{menuList.map(v => {
 						return (
 							<Link
 								target={v.menu_target}
 								href={v.menu_url}
-								className='menuItem flex-nowrap ml-5'
+								className='menuItem flex-nowrap ml-5 text-skin-content'
 								key={v.id}
 							>
 								{v.menu_name}

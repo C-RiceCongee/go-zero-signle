@@ -20,7 +20,7 @@ const Notes: FC<Notes> = props => {
 			<Link
 				target='__blank'
 				href={`/post/${id}`}
-				className='title font-bold text-2xl hover:text-blue-500'
+				className='title font-bold text-2xl hover:text-blue-500 text-skin-content1st'
 			>
 				{title}
 			</Link>
