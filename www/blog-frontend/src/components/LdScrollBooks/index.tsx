@@ -10,9 +10,13 @@ const LdScrollBooks: React.FC<LdScrollBooksProps> = ({ books }) => {
   const LdScrollBooksRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef(0);
   const onMouseMove = (e: MouseEvent) => {
-    // console.log(e.x - LdScrollBooksRef.current?.offsetLeft);
     if (!LdScrollBooksRef.current) return;
-    LdScrollBooksRef.current.scrollTo(e.x - startXRef.current, 0);
+    const moveOffset = e.x - startXRef.current;
+    if (moveOffset === 0) return;
+    LdScrollBooksRef.current.scrollTo(
+      LdScrollBooksRef.current.scrollLeft - moveOffset / 16,
+      0
+    );
   };
   const onMouseUp = (e: MouseEvent) => {
     document.body.removeEventListener("mousemove", onMouseMove);
@@ -27,7 +31,6 @@ const LdScrollBooks: React.FC<LdScrollBooksProps> = ({ books }) => {
   };
 
   useEffect(() => {
-    console.log(LdScrollBooksRef.current);
     LdScrollBooksRef.current?.addEventListener("mousedown", onMouseDown);
   }, []);
   return (
