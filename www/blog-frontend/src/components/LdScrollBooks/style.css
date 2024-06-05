@@ -1,0 +1,7 @@
+.LdScrollBooks{
+    cursor: pointer;
+}
+.LdScrollBooks::-webkit-scrollbar{
+    display: none;
+    
+}
