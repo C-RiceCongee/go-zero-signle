@@ -16,7 +16,10 @@ const Notes: FC<Notes> = (props) => {
   const { title, id, description, cover_image, create_time, keywords } =
     props.data;
   return (
-    <LazyDiv className="rounded-2xl ldNoteItem mb-10 " key={id}>
+    <LazyDiv
+      className="rounded-2xl ldNoteItem mb-5 border p-3 border-dashed border-skin-content1st"
+      key={id}
+    >
       <Link
         target="__blank"
         href={`/post/${id}`}
@@ -33,7 +36,7 @@ const Notes: FC<Notes> = (props) => {
       ></LazyImage>
       <div className="info flex">
         <div className="create_time mr-2 text-sm text-skin-content2sec">
-          2024-04-28
+          🗓-2024-04-28
         </div>
         <div className="keywords mr-2   text-sm text-skin-content2sec">
           {keywords}
