@@ -2,6 +2,7 @@ import LdNoteList from "../components/LdNoteList";
 import { fetchPost } from "@/utils/request";
 import LdBook from "@/components/LdBook";
 import LdScrollBooks from "@/components/LdScrollBooks";
+import LdSign from "@/components/LdSign";
 
 export default async function Home() {
   const data = await getHomePostData();
@@ -9,21 +10,11 @@ export default async function Home() {
   return (
     <div>
       {/* 签名 */}
-      {/* <LdSign></LdSign> */}
-      {/* 封面图 */}
-      {/* <LdBanner></LdBanner> */}
-      {/* 分类图 */}
-      {/* <LdCategory></LdCategory> */}
-      <h3>最近看的书</h3>
-      {/* <div className='flex overflow-scroll'> */}
-      {/* { */}
-      {/* book.map(v => <LdBook key={v.name}  {...v}></LdBook>) */}
-      {/* } */}
-      {/* </div> */}
-      <LdScrollBooks books={book} />
+      <LdSign></LdSign>
+      <LdScrollBooks className="mt-10 mb-10" books={book} />
       {/* 文章列表 */}
-      <h3>最近笔记</h3>
       <div className="recentNotes">
+        <h3 className="mb-5">📒-最近笔记</h3>
         <LdNoteList data={data}></LdNoteList>
       </div>
 

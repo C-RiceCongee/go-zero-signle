@@ -45,7 +45,7 @@ hljs.registerLanguage('html', html)
 hljs.registerLanguage('vue', html)
 hljs.registerLanguage('html5', html)
 
-import "./styles.css"
+import "./styles.scss"
 import LdViewImage from './LdViewImage'
 // 渲染TOC
 interface ILdRenderToc {
@@ -72,7 +72,7 @@ const LdRenderToc: React.FC<ILdRenderToc> = memo(({ html }) => {
 	if (html) {
 		return (
 			<div className='fixed duration-75 right-0 z-1 w-68 translate-x-[90%] hover:translate-x-[0%]  r-0 z-0 bg-skin-bg  p-2 text-sm top-[64px] shadow-ld-shadow-1 backdrop-blur-xl rounded-t-lg'>
-				<div onClick={onTocClickHandler} ref={domRef} dangerouslySetInnerHTML={{ __html: html }}></div>
+				<div className='mdContentHtml' onClick={onTocClickHandler} ref={domRef} dangerouslySetInnerHTML={{ __html: html }}></div>
 			</div>
 		)
 	} else {

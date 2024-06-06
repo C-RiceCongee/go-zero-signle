@@ -5,8 +5,9 @@ import LdBook from "../LdBook";
 import "./style.css";
 interface LdScrollBooksProps {
   books: any[];
+  className: string;
 }
-const LdScrollBooks: React.FC<LdScrollBooksProps> = ({ books }) => {
+const LdScrollBooks: React.FC<LdScrollBooksProps> = ({ books, className }) => {
   const LdScrollBooksRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef(0);
   const onMouseMove = (e: MouseEvent) => {
@@ -31,13 +32,24 @@ const LdScrollBooks: React.FC<LdScrollBooksProps> = ({ books }) => {
   };
 
   useEffect(() => {
-    LdScrollBooksRef.current?.addEventListener("mousedown", onMouseDown);
+    if (!LdScrollBooksRef.current) return;
+    LdScrollBooksRef.current.addEventListener("mousedown", onMouseDown);
+    return () => {
+      if (!LdScrollBooksRef.current) return;
+      LdScrollBooksRef.current.removeEventListener("mousedown", onMouseDown);
+    };
   }, []);
   return (
-    <div className="LdScrollBooks flex overflow-scroll" ref={LdScrollBooksRef}>
-      {books.map((v) => (
-        <LdBook key={v.name} {...v}></LdBook>
-      ))}
+    <div className={className}>
+      <h3 className="mb-5">📚-最近看的书</h3>
+      <div
+        className={`LdScrollBooks flex overflow-scroll border-b-2 border-skin-content `}
+        ref={LdScrollBooksRef}
+      >
+        {books.map((v) => (
+          <LdBook key={v.name} {...v}></LdBook>
+        ))}
+      </div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Notes: FC<Notes> = (props) => {
   const { title, id, description, cover_image, create_time, keywords } =
     props.data;
   return (
-    <LazyDiv className="rounded-2xl ldNoteItem mb-5" key={id}>
+    <LazyDiv className="rounded-2xl ldNoteItem mb-10 " key={id}>
       <Link
         target="__blank"
         href={`/post/${id}`}
